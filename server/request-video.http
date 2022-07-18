@@ -1,0 +1,10 @@
+### CREATE VIDEO
+POST http://localhost:8800/api/videos
+Content-Type: application/json
+
+{
+    "title": "the best video",
+    "desc": "test desc",
+    "imgUrl": "testUrl",
+    "videoUrl": "testvideourl"
+}

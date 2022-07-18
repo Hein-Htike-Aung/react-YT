@@ -18,11 +18,14 @@ import {
 	ChannelName,
 	Description,
 	ChannelCounter,
+	ImageContainer,
 } from './styles';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
+import Comments from '../../components/Comments/Comments';
+import Card from '../../components/Card/Card';
 
 const Video = () => {
 	return (
@@ -34,9 +37,9 @@ const Video = () => {
 						height='720'
 						src='https://www.youtube.com/embed/k3Vfj-e1Ma4'
 						title='YouTube video player'
-						frameborder='0'
+						frameBorder='0'
 						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-						allowfullscreen
+						allowFullScreen
 					></iframe>
 				</VideoWrapper>
 				<Title>Test Video</Title>
@@ -60,7 +63,9 @@ const Video = () => {
 				<Hr />
 				<Channel>
 					<ChannelInfo>
-						<Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIlZqRJLGUFMTJJIkOyHBxnICLQpa2NFSZQ&usqp=CAU' />
+						<ImageContainer>
+							<Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIlZqRJLGUFMTJJIkOyHBxnICLQpa2NFSZQ&usqp=CAU' />
+						</ImageContainer>
 						<ChannelDetails>
 							<ChannelName>Xiao Dev</ChannelName>
 							<ChannelCounter>200K subscribers</ChannelCounter>
@@ -75,8 +80,20 @@ const Video = () => {
 					</ChannelInfo>
 					<Subscribe>Subscribe</Subscribe>
 				</Channel>
+				<Hr />
+				<Comments />
 			</Content>
-			<Recommendation>Reco</Recommendation>
+			<Recommendation>
+				<Card type='sm' />
+				<Card type='sm' />
+				<Card type='sm' />
+				<Card type='sm' />
+				<Card type='sm' />
+				<Card type='sm' />
+				<Card type='sm' />
+				<Card type='sm' />
+				<Card type='sm' />
+			</Recommendation>
 		</Container>
 	);
 };

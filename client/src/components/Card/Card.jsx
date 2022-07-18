@@ -5,19 +5,28 @@ import {
 	Container,
 	Details,
 	Image,
+	ImageContainer,
 	Info,
 	Texts,
 	Title,
 } from './styles';
 import { Link } from 'react-router-dom';
 
-const Card = () => {
+const Card = ({ type }) => {
 	return (
 		<Link to='/video/test' className='link'>
-			<Container>
-				<Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuTKiM3wjh5k1vSyyECaMYq14aijdTCyh3vw&usqp=CAU' />
-				<Details>
-					<ChannelImage src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIlZqRJLGUFMTJJIkOyHBxnICLQpa2NFSZQ&usqp=CAU' />
+			<Container type={type}>
+				<Image
+					type={type}
+					src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuTKiM3wjh5k1vSyyECaMYq14aijdTCyh3vw&usqp=CAU'
+				/>
+				<Details type={type}>
+					<ImageContainer>
+						<ChannelImage
+							type={type}
+							src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIlZqRJLGUFMTJJIkOyHBxnICLQpa2NFSZQ&usqp=CAU'
+						/>
+					</ImageContainer>
 					<Texts>
 						<Title>Test Video</Title>
 						<ChannelName>Xiao Dev</ChannelName>

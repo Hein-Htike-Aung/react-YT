@@ -53,7 +53,7 @@ export const Recommendation = styled.div`
 
 export const Channel = styled.div`
 	display: flex;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 `;
 
 export const ChannelInfo = styled.div`
@@ -61,9 +61,11 @@ export const ChannelInfo = styled.div`
 	gap: 20px;
 `;
 
+export const ImageContainer = styled.div``;	
+
 export const Image = styled.img`
-	height: 50px;
-	width: 50px;
+	width: 36px;
+	height: 36px;
 	border-radius: 50%;
 	object-fit: cover;
 `;
@@ -80,23 +82,23 @@ export const ChannelName = styled.span`
 
 export const ChannelCounter = styled.span`
 	margin-top: 5px;
-    margin-bottom: 20px;
-    color: ${({ theme }) => theme.textSoft};
-    font-size: 12px;
+	margin-bottom: 20px;
+	color: ${({ theme }) => theme.textSoft};
+	font-size: 12px;
 `;
 
 export const Description = styled.p`
-    font-size: 14px;
+	font-size: 14px;
 `;
 
 export const Subscribe = styled.div`
-    background-color: #cc1a00;
-    border: none;
-    outline: none;
-    font-weight: 500;
-    color: white;
-    border-radius: 3px;
-    height: max-content;
-    padding: 10px 20px;
-    cursor: pointer;
+	background-color: #cc1a00;
+	border: none;
+	outline: none;
+	font-weight: 500;
+	color: white;
+	border-radius: 3px;
+	height: max-content;
+	padding: 10px 20px;
+	cursor: pointer;
 `;

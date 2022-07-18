@@ -56,13 +56,15 @@ const Menu = ({ setDarkMode, darkMode }) => {
 					<VideoLibraryOutlinedIcon />
 					Library
 				</Item>
-				<Login>
-					Sign in to like videos, comment, and subscribe.
-					<Button>
-						<AccountCircleOutlinedIcon />
-						SIGN IN
-					</Button>
-				</Login>
+				<Link to='/signin' className='link'>
+					<Login>
+						Sign in to like videos, comment, and subscribe.
+						<Button>
+							<AccountCircleOutlinedIcon />
+							SIGN IN
+						</Button>
+					</Login>
+				</Link>
 				<Hr />
 				<Title>BEST OF LAMATUBE</Title>
 				<Item>

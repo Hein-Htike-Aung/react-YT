@@ -1,0 +1,10 @@
+### UPDATE USER
+PATCH http://localhost:8800/api/users/62d5408c973fbb903ba7bced
+Content-Type: application/json
+
+{
+    "name": "test2"
+}
+
+### DELETE USER
+DELETE http://localhost:8800/api/users/62d5408c973fbb903ba7bced

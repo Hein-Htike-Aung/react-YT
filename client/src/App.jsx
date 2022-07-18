@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import Menu from './components/Menu/Menu';
 import Navbar from './components/Navbar/Navbar';
 import { Container, Main, Wrapper } from './styles';
 import { darkTheme, lightTheme } from './utils/Theme';
 import Home from './pages/Home/Home';
 import Video from './pages/Video/Video';
+import SignIn from './pages/SignIn/SignIn';
 
 const App = () => {
 	const [darkMode, setDarkMode] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
 						<Routes>
 							<Route path='/'>
 								<Route index element={<Home />} />
+								<Route path='signin' element={<SignIn />} />
 								<Route path='video'>
 									<Route path=':id' element={<Video />} />
 								</Route>
