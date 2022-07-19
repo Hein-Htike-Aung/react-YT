@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { axiosInstance } from '../../axios-config';
 import Comment from '../Comment/Comment';
 import { Avatar, Container, Input, NewComment } from './styles';
 
-const Comments = () => {
+const Comments = ({ video }) => {
+	const [comments, setComments] = useState([]);
+
+	const { currentUser } = useSelector((state) => state.user);
+
+	useEffect(() => {
+		const fetchComments = async () => {
+			try {
+				const res = await axiosInstance.get(`/comments/${video._id}`);
+
+				setComments(res.data);
+			} catch (error) {}
+		};
+		fetchComments();
+	}, [video._id]);
+
 	return (
 		<Container>
 			<NewComment>
-				<Avatar src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIlZqRJLGUFMTJJIkOyHBxnICLQpa2NFSZQ&usqp=CAU' />
+				<Avatar src={currentUser.img} />
 				<Input placeholder='Add a comment...`' />
 			</NewComment>
-			<Comment />
-			<Comment />
-			<Comment />
-			<Comment />
-			<Comment />
-			<Comment />
-			<Comment />
-			<Comment />
+			{comments.map((c) => (
+				<Comment key={c._id} comment={c} />
+			))}
 		</Container>
 	);
 };

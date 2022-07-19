@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { axiosInstance } from '../../axios-config';
 import {
 	Avatar,
 	Container,
@@ -8,22 +9,35 @@ import {
 	Name,
 	Text,
 } from './styles';
+import TimeAgo from 'react-timeago';
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+	const [channel, setChannel] = useState({});
+
+	useEffect(() => {
+		const fetchComment = async () => {
+			const res = await axiosInstance.get(`/users/${comment.userId}`);
+
+			setChannel(res.data);
+		};
+
+		fetchComment();
+	}, [comment.userId]);
+
 	return (
 		<Container>
 			<ImageContainer>
-				<Avatar src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpIlZqRJLGUFMTJJIkOyHBxnICLQpa2NFSZQ&usqp=CAU' />
+				<Avatar src={channel.img} />
 			</ImageContainer>
 			<Details>
 				<Name>
-					John Doe <Date>1 day ago</Date>
+					{channel.name}{' '}
+					<Date>
+						{' '}
+						<TimeAgo date={comment.createdAt} />
+					</Date>
 				</Name>
-				<Text>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae harum
-					necessitatibus quo ipsum sit. Fugit porro sed, minus ea voluptatem,
-					corporis est minima quae iste aspernatur natus, dolor aliquid ratione.
-				</Text>
+				<Text>{comment.desc}</Text>
 			</Details>
 		</Container>
 	);

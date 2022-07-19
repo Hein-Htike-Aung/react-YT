@@ -5,6 +5,26 @@ Content-Type: application/json
 {
     "title": "the best video",
     "desc": "test desc",
-    "imgUrl": "testUrl",
+    "imgUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuTKiM3wjh5k1vSyyECaMYq14aijdTCyh3vw&usqp=CAU",
     "videoUrl": "testvideourl"
 }
+
+### GET VIDEO BY ID
+GET http://localhost:8800/api/videos/62d625d9c4af9fb84625499d
+
+### GET RANDOM VIDEOS
+GET http://localhost:8800/api/videos/find/randoms
+
+
+### GET TREND VIDEOS
+GET http://localhost:8800/api/videos/find/trends
+
+### GET SUBSCRIPTIONS VIDEOS
+GET http://localhost:8800/api/videos/find/subscriptions
+
+
+### GET TAGS VIDEOS
+GET http://localhost:8800/api/videos/tags?tags=c
+
+### GET VIDEOS by keyword
+GET http://localhost:8800/api/videos/search/by-keyword?keyword=the

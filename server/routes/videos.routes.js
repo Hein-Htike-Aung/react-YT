@@ -3,13 +3,15 @@ import {
 	addView,
 	createVideo,
 	deleteVideo,
+	disLikeVideo,
 	getByTag,
 	getRandomVideos,
 	getTrendVideos,
 	getVideo,
+	likeVideo,
 	search,
 	subscribedUsersVideos,
-	updateVideo,
+	updateVideo
 } from '../controllers/videos.controller.js';
 import { verifyToken } from '../middlewares/verifyToken.js';
 
@@ -21,13 +23,15 @@ router.delete('/:id', verifyToken, deleteVideo);
 router.get('/:id', getVideo);
 router.patch('/view/:id', addView);
 // Get most tranding videos by view counts
-router.get('/trends', getTrendVideos);
-router.get('/randoms', getRandomVideos);
+router.get('/find/trends', getTrendVideos);
+router.get('/find/randoms', getRandomVideos);
 // Get subscribed users' videos
-router.patch('/subscribe', verifyToken, subscribedUsersVideos);
+router.get('/find/subscriptions', verifyToken, subscribedUsersVideos);
 // ?tags=js,py,c
-router.patch('/tags', getByTag);
+router.get('/recommendation/tags', getByTag);
 // search video with title keyword
-router.patch('/search', search);
+router.get('/search/by-keyword', search);
+router.patch('/like/:videoId', verifyToken, likeVideo);
+router.patch('/dislike/:videoId', verifyToken, disLikeVideo);
 
 export default router;

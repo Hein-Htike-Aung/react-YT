@@ -7,8 +7,6 @@ export const createVideo = async (req, res, next) => {
 	try {
 		const currentUserId = req.user.id;
 
-		console.log(req.user);
-
 		const video = new Video({ userId: currentUserId, ...req.body });
 
 		const newVideo = await video.save();
@@ -114,13 +112,12 @@ export const subscribedUsersVideos = async (req, res, next) => {
 
 export const getByTag = async (req, res, next) => {
 	const tags = req.query.tags.split(',');
-	const videos = await Video.find({
-		tags: {
-			$in: tags,
-		},
-	}).limit(20);
-
-	res.status(200).json(videos);
+	try {
+		const videos = await Video.find({ tags: { $in: tags } }).limit(20);
+		res.status(200).json(videos);
+	} catch (err) {
+		next(err);
+	}
 };
 
 export const search = async (req, res, next) => {
@@ -131,4 +128,36 @@ export const search = async (req, res, next) => {
 	}).limit(40);
 
 	res.status(200).json(videos);
+};
+
+export const likeVideo = async (req, res, next) => {
+	const currentUserId = req.user.id;
+	const reqVideoId = _.get(req.params, 'videoId');
+
+	try {
+		await Video.findByIdAndUpdate(reqVideoId, {
+			$addToSet: { likes: currentUserId },
+			$pull: { dislikes: currentUserId },
+		});
+
+		res.status(200).json('The video has been liked');
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const disLikeVideo = async (req, res, next) => {
+	const currentUserId = req.user.id;
+	const reqVideoId = _.get(req.params, 'videoId');
+
+	try {
+		await Video.findByIdAndUpdate(reqVideoId, {
+			$addToSet: { dislikes: currentUserId },
+			$pull: { likes: currentUserId },
+		});
+
+		res.status(200).json('The video has been disliked');
+	} catch (error) {
+		next(error);
+	}
 };

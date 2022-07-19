@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 
 const VideoSchema = new mongoose.Schema(
 	{
-		userId: { // current user id
+		userId: {
+			// current user id
 			type: String,
 			required: true,
-			unique: true,
 		},
 		title: {
 			type: String,
@@ -23,19 +23,23 @@ const VideoSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		views: { // view count
+		views: {
+			// view count
 			type: Number,
 			default: 0,
 		},
-		tags: { // js,py,c,java
+		tags: {
+			// js,py,c,java
 			type: [String],
 			default: [],
 		},
 		likes: {
+			// userId
 			type: [String],
 			default: [],
 		},
 		dislikes: {
+			// userId
 			type: [String],
 			default: [],
 		},

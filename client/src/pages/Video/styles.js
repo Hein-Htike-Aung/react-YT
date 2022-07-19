@@ -11,6 +11,12 @@ export const Content = styled.div`
 
 export const VideoWrapper = styled.div``;
 
+export const VideoFrame = styled.video`
+	max-height: 720px;
+	width: 100%;
+	object-fit: cover;
+`;
+
 export const Title = styled.h1`
 	font-size: 18px;
 	font-weight: 400;
@@ -47,13 +53,9 @@ export const Hr = styled.hr`
 	border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
-export const Recommendation = styled.div`
-	flex: 2;
-`;
-
 export const Channel = styled.div`
 	display: flex;
-	/* justify-content: space-between; */
+	justify-content: space-between;
 `;
 
 export const ChannelInfo = styled.div`
@@ -61,7 +63,7 @@ export const ChannelInfo = styled.div`
 	gap: 20px;
 `;
 
-export const ImageContainer = styled.div``;	
+export const ImageContainer = styled.div``;
 
 export const Image = styled.img`
 	width: 36px;
@@ -92,7 +94,10 @@ export const Description = styled.p`
 `;
 
 export const Subscribe = styled.div`
-	background-color: #cc1a00;
+	background-color: ${(props) =>
+		props.type !== 'subscribed'
+			? `#cc1a00`
+			: `${({ theme }) => theme.bgLight}`};
 	border: none;
 	outline: none;
 	font-weight: 500;

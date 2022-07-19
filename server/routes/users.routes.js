@@ -16,10 +16,8 @@ const router = express.Router();
 router.patch('/:id', verifyToken, updateUser);
 router.delete('/:id', verifyToken, deleteUser);
 router.get('/:id', getUser);
-router.get('/:id', getUsers);
+router.get('/', getUsers);
 router.patch('/subscribe/:targetUserId', verifyToken, subscribeUser);
 router.patch('/unsubscribe/:targetUserId', verifyToken, unSubscribeUser);
-router.patch('/like/:videoId', verifyToken, likeVideo);
-router.patch('/dislike/:id', verifyToken, disLikeVideo);
 
 export default router;

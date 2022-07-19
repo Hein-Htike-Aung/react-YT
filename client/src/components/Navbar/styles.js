@@ -4,13 +4,13 @@ export const Container = styled.div`
 	position: sticky;
 	top: 0;
 	background-color: ${({ theme }) => theme.bgLighter};
-    height: 56px;
+	height: 56px;
 `;
 export const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
-    height: 100%;
-    padding: 0 20px;
+	height: 100%;
+	padding: 0 20px;
 	justify-content: flex-end;
 	position: relative;
 `;
@@ -26,13 +26,31 @@ export const Search = styled.div`
 	padding: 5px;
 	border: 1px solid #333;
 	border-radius: 3px;
+	color: ${({ theme }) => theme.text};
 `;
 export const Input = styled.input`
 	border: none;
 	outline: none;
 	width: 80%;
 	background-color: transparent;
+	color: ${({ theme }) => theme.text};
 `;
+
+export const User = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-weight: 500;
+	color: ${({ theme }) => theme.text};
+`;
+
+export const Avatar = styled.img`
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background-color: #999;
+`;
+
 export const Button = styled.button`
 	padding: 5px 15px;
 	background-color: transparent;

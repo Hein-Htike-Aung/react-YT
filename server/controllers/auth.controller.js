@@ -21,7 +21,7 @@ export const signup = async (req, res, next) => {
 
 export const signin = async (req, res, next) => {
 	try {
-		const user = await User.findOne({ email: req.body.email });
+		const user = await User.findOne({ name: req.body.name });
 
 		if (!user) return next(createError(404, 'Invalid Credentials'));
 
@@ -32,14 +32,41 @@ export const signin = async (req, res, next) => {
 
 		if (!isPasswordValid) return next(createError(404, 'Invalid Credentials'));
 
-		const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+		const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
 
-		res
-			.cookie('access_token', token, {
-				httpOnly: true,
-			})
-			.status(200)
-			.json(_.omit(user.toJSON(), 'password'));
+		// res
+		// 	.cookie('access_token', token, {
+		// 		httpOnly: true,
+		// 	})
+		// 	.status(200)
+		// 	.json(_.omit(user.toJSON(), 'password'));
+
+		res.status(200).json({
+			..._.omit(user.toJSON(), 'password'),
+			accessToken,
+		});
+	} catch (error) {
+		next(error);
+	}
+};
+
+export const googleAuth = async (req, res, next) => {
+	try {
+		let user = await User.findOne({ email: req.body.email });
+
+		if (!user) {
+			const newUser = new User({
+				...req.body,
+				fromGoogle: true,
+			});
+			user = await newUser.save();
+		}
+		const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
+
+		res.status(200).json({
+			..._.omit(user.toJSON(), 'password'),
+			accessToken,
+		});
 	} catch (error) {
 		next(error);
 	}

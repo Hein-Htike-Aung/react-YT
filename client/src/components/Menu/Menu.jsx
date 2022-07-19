@@ -15,6 +15,7 @@ import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined
 import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Youtube from '../../img/logo.png';
 import {
@@ -30,6 +31,8 @@ import {
 } from './styles';
 
 const Menu = ({ setDarkMode, darkMode }) => {
+	const { currentUser } = useSelector((state) => state.user);
+
 	return (
 		<Container>
 			<Wrapper>
@@ -43,29 +46,38 @@ const Menu = ({ setDarkMode, darkMode }) => {
 					<HomeIcon />
 					Home
 				</Item>
-				<Item>
-					<ExploreOutlinedIcon />
-					Explore
-				</Item>
-				<Item>
-					<SubscriptionsOutlinedIcon />
-					Subscriptions
-				</Item>
+				<Link to='/trends' className='link'>
+					<Item>
+						<ExploreOutlinedIcon />
+						Explore
+					</Item>
+				</Link>
+				<Link to='/subscriptions' className='link'>
+					<Item>
+						<SubscriptionsOutlinedIcon />
+						Subscriptions
+					</Item>
+				</Link>
 				<Hr />
 				<Item>
 					<VideoLibraryOutlinedIcon />
 					Library
 				</Item>
-				<Link to='/signin' className='link'>
-					<Login>
-						Sign in to like videos, comment, and subscribe.
-						<Button>
-							<AccountCircleOutlinedIcon />
-							SIGN IN
-						</Button>
-					</Login>
-				</Link>
-				<Hr />
+				{!currentUser && (
+					<>
+						<Link to='/signin' className='link'>
+							<Login>
+								Sign in to like videos, comment, and subscribe.
+								<Button>
+									<AccountCircleOutlinedIcon />
+									SIGN IN
+								</Button>
+							</Login>
+						</Link>
+						<Hr />
+					</>
+				)}
+
 				<Title>BEST OF LAMATUBE</Title>
 				<Item>
 					<LibraryMusicOutlinedIcon />
